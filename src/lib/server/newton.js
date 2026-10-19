@@ -1,17 +1,19 @@
 import { ATAI_API_KEY, ATAI_API_ENDPOINT } from '$env/static/private';
 
-const API_VERSION = 'v0.5';
+// Every API surface lives under one versionless /api prefix, and the Direct
+// Query endpoint keeps its lens/ namespace.
+const API_PREFIX = 'api';
 // C 2.6 fusion checkpoint, per the atai-newton-fusion-model skill.
 const MODEL = 'Newton::c2_6_8b_fp8_260424d7a55d5e';
 const DEFAULT_TIMEOUT_MS = 60000;
 
 function queryUrl() {
 	const base = ATAI_API_ENDPOINT.replace(/\/$/, '');
-	return `${base}/${API_VERSION}/query`;
+	return `${base}/${API_PREFIX}/lens/query`;
 }
 
 /**
- * Send a text query to Newton's /query endpoint.
+ * Send a text query to Newton's /api/lens/query endpoint.
  *
  * @param {Object} args
  * @param {string} args.query - User prompt.
