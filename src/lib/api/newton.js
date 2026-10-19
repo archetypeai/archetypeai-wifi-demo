@@ -1,6 +1,6 @@
 /**
  * Client-side wrappers around the server's API endpoints.
- * The server handles the direct call to Newton /v0.5/query.
+ * The server handles the direct call to Newton /api/lens/query.
  */
 
 /** Fetch the session manifest (device inventory, activity timeline, highlights, frame index). */

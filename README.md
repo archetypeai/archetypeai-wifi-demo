@@ -36,7 +36,7 @@ The GHOST project was funded by the EU Horizon 2020 programme.
 
 - **SvelteKit** with Svelte 5 runes
 - **Archetype AI Design System** — semantic tokens, primitives, patterns
-- **Newton `/v0.5/query` API** — JSON snapshot sent as text in the prompt; three SvelteKit server routes (15-min analyze, realtime analyze, per-device predict) all funnel through the same Newton endpoint with purpose-built system prompts (see [Newton API](#newton-api))
+- **Newton `/api/lens/query` API** — JSON snapshot sent as text in the prompt; three SvelteKit server routes (15-min analyze, realtime analyze, per-device predict) all funnel through the same Newton endpoint with purpose-built system prompts (see [Newton API](#newton-api))
 - **Python** preprocessing (one-time) to reshape GHOST-IoT flows into snapshot frames + an event stream
 
 ## Setup
@@ -72,7 +72,7 @@ Create `.env`:
 
 ```
 ATAI_API_KEY=your_api_key_here
-ATAI_API_ENDPOINT=https://api.u1.archetypeai.app/
+ATAI_API_ENDPOINT=https://platform.u1.archetypeai.app
 ```
 
 ### 4. Run
@@ -90,14 +90,14 @@ src/
 ├── routes/
 │   ├── +page.svelte                      # Dashboard orchestrator
 │   └── api/
-│       ├── analyze/+server.js            # 15-min occupancy verdict (Newton /v0.5/query)
+│       ├── analyze/+server.js            # 15-min occupancy verdict (Newton /api/lens/query)
 │       ├── analyze-realtime/+server.js   # Rolling-window occupancy verdict
 │       ├── predict-devices/+server.js    # Per-device ACTIVE/IDLE/OFFLINE
 │       ├── manifest/+server.js           # GET processed session manifest
 │       ├── frame/[index]/+server.js      # GET single frame by index
 │       └── events/+server.js             # GET full event stream (realtime mode)
 ├── lib/
-│   ├── server/newton.js                  # Server-side Newton /query client
+│   ├── server/newton.js                  # Server-side Newton /api/lens/query client
 │   ├── api/newton.js                     # Client-side fetch wrappers
 │   └── components/ui/custom/
 │       ├── comparison-grid.svelte        # Ground Truth vs Newton row-by-row
@@ -127,10 +127,10 @@ The app is a single-endpoint client of the Archetype AI Platform. All three Newt
 ### Endpoint
 
 ```
-POST {ATAI_API_ENDPOINT}/v0.5/query
+POST {ATAI_API_ENDPOINT}/api/lens/query
 ```
 
-Default base: `https://api.u1.archetypeai.app/`.
+Default base: `https://platform.u1.archetypeai.app`.
 
 ### Headers
 
