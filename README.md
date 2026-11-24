@@ -178,6 +178,17 @@ The `online` boolean is stripped from every frame before it reaches Newton (`src
 
 This demo is modeled after the per-device telemetry residential ISP gateways already emit (`wifi_status_report`) — a periodic JSON block listing every connected device with online state, RSSI, and traffic counters. GHOST-IoT doesn't include RSSI, device-type metadata, or set-top-box interaction events, so those fields are absent from this demo. The narrative: *"Newton reasons about occupancy from the data your gateway already produces — no new sensors, no wearables, no cameras."*
 
+## Licence
+
+The code is under the [Apache License 2.0](LICENSE). That licence doesn't cover the
+GHOST-IoT data in `data/`: the files copied from the upstream dataset in
+`data/ghost-iot/` and the frames and events built from them in `data/processed/`.
+That data belongs to its authors: see [Data attribution](#data-attribution).
+
+The PP Neue Montreal fonts in `static/fonts/` are copyright Pangram Pangram Foundry and
+aren't covered by the Apache licence either. The files in `.claude/` carry their own MIT
+licence ([`.claude/LICENSE`](.claude/LICENSE)).
+
 ## Acknowledgements
 
 - **Data:** [GHOST-IoT dataset](https://github.com/gspathoulas/ghost-iot-dataset) — Anagnostopoulos et al., *Sensors* 2020. Funded by EU Horizon 2020.
